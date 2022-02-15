@@ -21,15 +21,13 @@ export const clearItemFromCart = (cartItems, cartItemToClear) => {
 }
 
 export const reduceItemQuantity = (cartItems, cartItemtoReduce) => {
-    console.log(cartItemtoReduce);
+
     const existingCartItem = cartItems.find(
         (cartItem) => cartItem.id === cartItemtoReduce.id
     )
 
     if(existingCartItem.quantity === 1){
-        return cartItems.filter(
-            (cartItem) => cartItem.id !== cartItemtoReduce.id
-        )
+        return clearItemFromCart(cartItems, cartItemtoReduce.id);
     }
 
     
