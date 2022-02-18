@@ -1,6 +1,5 @@
 import React from "react";
 import CartIcon from "../cart-icon/cart-icon.component";
-import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { createStructuredSelector } from "reselect";

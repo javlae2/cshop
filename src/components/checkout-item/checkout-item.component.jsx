@@ -1,32 +1,43 @@
 import React from "react";
 import { connect } from "react-redux";
-import { clearItemFromCart, reduceItemQuantity, addItem } from "../../redux/cart/cart.actions";
-
-import "./checkout-item.styles.scss";
+import {
+  clearItemFromCart,
+  reduceItemQuantity,
+  addItem,
+} from "../../redux/cart/cart.actions";
+import {
+  Arrow,
+  CheckoutItemContainer,
+  CheckoutItemRemoveButton,
+  CheckoutItemTextContainer,
+  ImageContainer,
+  QuantityContainer,
+} from "./checkout-item.styles";
 
 const CheckoutItem = ({ cartItem, clearItem, reduceItem, addItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   return (
-    <div className="checkout-item">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageUrl} alt="item" />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={() => reduceItem(cartItem)}>&#10094;</div>
+      </ImageContainer>
+      <CheckoutItemTextContainer>{name}</CheckoutItemTextContainer>
+      <QuantityContainer>
+        <Arrow onClick={() => reduceItem(cartItem)}>&#10094;</Arrow>
         <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => addItem(cartItem)}>&#10095;</div></span>
-      <span className="price">${price}</span>
-      <div className="remove-button" onClick={() => clearItem(cartItem)}>
+        <Arrow onClick={() => addItem(cartItem)}>&#10095;</Arrow>
+      </QuantityContainer>
+      <CheckoutItemTextContainer>${price}</CheckoutItemTextContainer>
+      <CheckoutItemRemoveButton onClick={() => clearItem(cartItem)}>
         &#10005;
-      </div>
-    </div>
+      </CheckoutItemRemoveButton>
+    </CheckoutItemContainer>
   );
 };
 const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItemFromCart(item)),
   reduceItem: (item) => dispatch(reduceItemQuantity(item)),
-  addItem: (item) => dispatch(addItem(item))
+  addItem: (item) => dispatch(addItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);
