@@ -6,11 +6,15 @@ import ShopPage from "./pages/shop/shop.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
 import Header from "./components/header/header.component";
 import SignInSignUpPage from "./pages/sign-in-sign-up/sign-in-sign-up.component";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+} from "./firebase/firebase.utils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import {createStructuredSelector} from 'reselect';
+import { createStructuredSelector } from "reselect";
+
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -30,6 +34,11 @@ class App extends React.Component {
       } else {
         setCurrentUser(userAuth);
       }
+      //Adding initial data to firebase:
+      //addCollectionAndDocuments(
+      //   "collections",
+      //   collectionsArray.map(({ title, items }) => ({ title, items }))
+      // );
     });
   }
 
