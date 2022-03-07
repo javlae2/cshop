@@ -3,14 +3,15 @@ import { Route } from "react-router-dom";
 import CollectionPageContainer from "../collection/collection.component";
 import { connect } from "react-redux";
 import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.container";
-import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
+import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
 class ShopPage extends React.Component {
   componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props;
-    fetchCollectionsStartAsync();
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart();
 
-    // use observable instead of get()
+
+    // to use observable instead of get() use the following code:
     // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
     //   async (snapshot) => {
     //     const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
@@ -39,7 +40,7 @@ class ShopPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);
